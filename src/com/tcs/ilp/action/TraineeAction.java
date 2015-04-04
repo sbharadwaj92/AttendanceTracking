@@ -23,6 +23,7 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	private Trainee trainee = new Trainee();
 	private TraineeService tSvc= new TraineeService();
 	private List<Trainee> aList = new ArrayList<Trainee>();
+	private List<Day> dList = new ArrayList<Day>();
 	private HttpServletRequest request;
 	private static final long serialVersionUID = 1L;
 
@@ -100,11 +101,20 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	{
 		String sEmpId = request.getParameter("empId");
 		trainee.setEmpId(Long.parseLong(sEmpId));
-		List<Day> dList = new ArrayList<Day>();
+		//List<Day> dList = new ArrayList<Day>();
 		dList = tSvc.getOneAbsenteeDetails(trainee.getEmpId());
-		request.setAttribute("dList", dList);
+		//request.setAttribute("dList", dList);
 		return SUCCESS;
 	}
+	
+	public List<Day> getdList() {
+		return dList;
+	}
+
+	public void setdList(List<Day> dList) {
+		this.dList = dList;
+	}
+
 	public Trainee getModel()
 	{
 		return trainee;

@@ -14,21 +14,18 @@
 <body>
 	<s:url var="readT" action="absenteesMoreThanTwo"></s:url>
 	<s:a href="%{#readT}">BACK</s:a><br><br>
-	<%
-		ArrayList<Day> dList = (ArrayList<Day>) request.getAttribute("dList");
-		SimpleDateFormat sd = new SimpleDateFormat("dd-MMM-yyyy");
-		if (dList != null) {
-	%>
-	<table border="1">
-		<tr>
-			<th>DATE</th>
-		</tr>
-		<% for (Day d : dList) { %>
-		<tr>
-			<td><%= sd.format(d.getCurDate()) %></td>
-		</tr>
-		<% } %>
-	</table>
-	<% } %>
+	
+	<s:if test="%{getdList()!=null}">	
+		<table border="1">
+			<tr>
+				<th>DATE</th>
+			</tr>
+				<s:iterator value="%{getdList()}">
+			<tr>
+				<td><s:date name="curDate" format="dd-MMM-yyyy" /></td>
+			</tr>
+			</s:iterator>
+		</table>
+	</s:if>
 </body>
 </html>

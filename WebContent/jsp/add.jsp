@@ -15,9 +15,11 @@
 <body>
 <s:url var="home" action="index"></s:url>
 <s:a href="%{#home}">HOME</s:a><br><br>
+
     <s:form id="form" theme="simple" action="getRecords">
       <sj:datepicker id="date0" name="date1" displayFormat="dd-mm-yy" label="Select a Date" />
 		<s:submit value="submit" name="submit" />
     </s:form>
+
 </body>
 </html>
