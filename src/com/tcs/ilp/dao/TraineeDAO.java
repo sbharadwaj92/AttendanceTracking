@@ -107,9 +107,9 @@ public class TraineeDAO
             HibernateUtil.beginTransaction();
             Query query = HibernateUtil.getSession().createQuery(
             		"SELECT TR.empId, TR.empName, DA.curDate, TR.lgName, TR.batchName, TR.project, TR.location"
-            		+ " FROM Trainee TR JOIN TR.tSet TRD JOIN TRD.day DA WHERE TRD.status = ? AND DA.curDate = ?");
-            query.setParameter(0, status);
-            query.setParameter(1, date);
+            		+ " FROM Trainee TR JOIN TR.tSet TRD JOIN TRD.day DA WHERE TRD.status = :status AND DA.curDate = :curDate");
+            query.setParameter("status", status);
+            query.setParameter("curDate", date);
             List<?> l = query.list();
             HibernateUtil.commitTransaction();
             Iterator<?> it=l.iterator();
@@ -140,10 +140,10 @@ public class TraineeDAO
             HibernateUtil.beginTransaction();
             Query query = HibernateUtil.getSession().createQuery(
             		"SELECT TR.empId, TR.empName, TR.lgName, TR.batchName, TR.project, COUNT(TRD.status)"
-            		+ " FROM Trainee TR JOIN TR.tSet TRD JOIN TRD.day DA WHERE TRD.status=?"
+            		+ " FROM Trainee TR JOIN TR.tSet TRD JOIN TRD.day DA WHERE TRD.status = :status"
             		+ " GROUP BY TR.empId, TR.empName, TR.lgName, TR.batchName, TR.project"
             		+ " HAVING count(TRD.status)>2 ORDER BY TR.empId");
-            query.setParameter(0, "A");
+            query.setParameter("status", "A");
             List<?> l = query.list();
             HibernateUtil.commitTransaction();
             Iterator<?> it=l.iterator();
@@ -174,9 +174,9 @@ public class TraineeDAO
             HibernateUtil.beginTransaction();
             Query query = HibernateUtil.getSession().createQuery(
             		"SELECT DA.curDate FROM Trainee TR JOIN TR.tSet TRD JOIN TRD.day DA"
-            		+ " WHERE TR.empId = ? AND TRD.status = ? ORDER BY DA.curDate");
-            query.setParameter(0, empId);
-            query.setParameter(1, "A");
+            		+ " WHERE TR.empId = :empId AND TRD.status = :status ORDER BY DA.curDate");
+            query.setParameter("empId", empId);
+            query.setParameter("status", "A");
             dateList = (ArrayList<Date>) query.list();
             HibernateUtil.commitTransaction();
             for(int i=0;i<dateList.size();i++)
