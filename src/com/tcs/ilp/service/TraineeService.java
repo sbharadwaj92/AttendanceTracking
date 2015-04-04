@@ -10,7 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -102,15 +101,15 @@ public class TraineeService
             				if(!tDao.checkIfTraineeExists(t.getEmpId()))
             				{
             					tDao.insertTrainee(t);
-            					addTraineeCount++;
             				}
             			}
             		}
+                    tdId.setCurDate(d.getCurDate());
+                    tdId.setEmpId(t.getEmpId());
+                    td.setId(tdId);
+                    tDao.insertTraineeDay(td);
+                    addTraineeCount++;
             	}
-                tdId.setCurDate(d.getCurDate());
-                tdId.setEmpId(t.getEmpId());
-                td.setId(tdId);
-                tDao.insertTraineeDay(td);
             }
             workbook.close();
             file.close();

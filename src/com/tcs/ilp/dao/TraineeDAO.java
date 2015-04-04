@@ -2,10 +2,8 @@ package com.tcs.ilp.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -134,7 +132,6 @@ public class TraineeDAO
 	public List<AbsenteeReport> absenteesMoreThanTwo()
 	{
 		List<AbsenteeReport> abList = new ArrayList<AbsenteeReport>();
-		Map<List<Long>, List<Trainee>> traineeCountMap = new HashMap<List<Long>, List<Trainee>>();
         try
         {
             HibernateUtil.beginTransaction();
@@ -165,6 +162,7 @@ public class TraineeDAO
         return abList;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Day> getOneAbsenteeDates(Long empId)
 	{
 		List<Day> dList = new ArrayList<Day>();
