@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 3 Apr, 2015 5:19:17 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.tcs.ilp.bean.TraineeDay" table="TBL_Trainee_Day">
+        <composite-id name="id" class="com.tcs.ilp.bean.TraineeDayId">
+            <key-property name="empId" column="empId" type="long" />
+            <key-property name="curDate" column="curDate" type="date" />
+        </composite-id>
+        
+        <property name="status" column="status" type="string" />
+        
+		<many-to-one name="day" class="com.tcs.ilp.bean.Day" update="false" insert="false" fetch="select">
+            <column name="curDate" not-null="true" />
+        </many-to-one>
+        <many-to-one name="trainee" class="com.tcs.ilp.bean.Trainee" update="false" insert="false" fetch="select">
+            <column name="empId"  not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
+

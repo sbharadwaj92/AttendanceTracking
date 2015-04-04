@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.tcs.ilp.bean.Trainee" table="TBL_Trainee_Absentee_Tailgater" schema="SYSTEM">
+        <id name="empId" column="empId" type="long">
+            <generator class="assigned" />
+        </id>
+        <property name="empName" column="empName" type="string" />
+        <property name="lgName" column="lgName" type="string" />
+        <property name="batchName" column="batchName" type="string" />
+        <property name="project" column="project" type="string" />
+        <property name="city" column="city" type="string" />
+        <property name="location" column="location" type="string" />
+        <property name="dor" column="dor" type="date" />
+        <set name="tSet" table="TBL_Trainee_Day" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="empId" not-null="true" />
+            </key>
+            <one-to-many class="com.tcs.ilp.bean.TraineeDay" />
+        </set>
+    </class>
+</hibernate-mapping>
+

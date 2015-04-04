@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.tcs.ilp.bean.UserType" table="TBL_USERTYPE">
+        <id name="userTypeId" type="int">
+            <column name="USERTYPEID" />
+            <generator class="assigned" />
+        </id>
+        <property name="userTypeName" type="string">
+            <column name="USERTYPENAME" />
+        </property>
+        <set name="uSet" table="TBL_USER" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="USERTYPEID" />
+            </key>
+            <one-to-many class="com.tcs.ilp.bean.User" />
+        </set>
+    </class>
+</hibernate-mapping>

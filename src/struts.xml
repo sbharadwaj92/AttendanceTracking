@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="global" />
+ 	<constant name="struts.devMode" value="true" />
+	<constant name="struts.custom.i18n.resources" value="com.tcs.ilp.resource.applicationResource" />
+	<package name="default" namespace="/" extends="struts-default">
+
+		<default-action-ref name="index"></default-action-ref>
+
+		<action name="index">
+			<result>/jsp/home.jsp</result>
+		</action>
+		
+		<action name="addTrainee">
+			<result>/jsp/add.jsp</result>
+		</action>
+		
+		<action name="dailyAbsentees">
+			<result>/jsp/dailyAbsenteesReport.jsp</result>
+		</action>
+		
+		<action name="dailyTailGaters">
+			<result>/jsp/dailyTailgatersReport.jsp</result>
+		</action>
+		
+		<action name="getRecords" class="com.tcs.ilp.action.TraineeAction" method="insertTrainee">
+			<result name="input">/jsp/add.jsp</result>
+			<result name="success">/jsp/result.jsp</result>
+		</action>
+		
+		<action name="getAbsentees" class="com.tcs.ilp.action.TraineeAction" method="getDailyAbsenteesList">
+			<result name="input">/jsp/dailyAbsenteesReport.jsp</result>
+			<result name="success">/jsp/dailyAbsenteesReport.jsp</result>
+		</action>
+		
+		<action name="getTailgaters" class="com.tcs.ilp.action.TraineeAction" method="getDailyTailgatersList">
+			<result name="input">/jsp/dailyTailgatersReport.jsp</result>
+			<result name="success">/jsp/dailyTailgatersReport.jsp</result>
+		</action>
+		
+		<action name="absenteesMoreThanTwo" class="com.tcs.ilp.action.TraineeAction" method="getAbsenteesMoreThanTwo">
+			<result name="success">/jsp/absenteesMoreThanTwo.jsp</result>
+		</action>
+		
+		<action name="viewDetails" class="com.tcs.ilp.action.TraineeAction" method="getOneAbsentee">
+			<result name="success">/jsp/absenteeDetails.jsp</result>
+		</action>
+		
+		<!--action name="validateCredential" class="com.tcs.ilp.action.UserAction">
+			<result name="success">/jsp/home.jsp</result>
+			<result name="failure">/jsp/login.jsp</result>
+			<result name="input">/jsp/login.jsp</result>
+		</action>
+
+		<action name="add_product">
+			<result>/jsp/addProduct.jsp</result>
+		</action>
+
+		<action name="getRecords" class="com.tcs.ilp.action.TraineeAction" method="insertTrainee">
+			<result name="input">/jsp/add.jsp</result>
+			<result name="success">/jsp/result.jsp</result>
+		</action>
+
+		<action name="all_products" class="com.tcs.ilp.action.ProductAction" method="allProducts">
+			<result name="success">/jsp/allProducts.jsp</result>
+		</action>
+		
+		<action name="updateAction" class="com.tcs.ilp.action.ProductAction" method="updateProduct">
+             <result name="success">/jsp/updateProduct.jsp</result>
+         </action>
+         
+		<action name="updateProductAction" class="com.tcs.ilp.action.ProductAction" method="updateProductDetails">
+			<result name="success">/jsp/result.jsp</result>
+			<result name="input">/jsp/updateProduct.jsp</result>
+		</action>
+         
+		<action name="deleteAction" class="com.tcs.ilp.action.ProductAction" method="deleteProduct">
+			<result name="success">/jsp/viewProduct.jsp</result>
+		</action>
+		
+		<action name="deleteProductAction" class="com.tcs.ilp.action.ProductAction" method="deleteProductDetails">
+			<result name="success">/jsp/result.jsp</result>
+		</action-->
+		
+	</package>
+
+</struts>

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+  
+ <hibernate-mapping>  
+  <class name="com.tcs.ilp.bean.TempTrainee" table="TBL_Trainee_Temp">  
+    <id name="empId" column="empId" type="long"></id>  
+        
+     <property name="empName" column="empName" type="string" ></property>  
+     <property name="lgName" column="lgName" type="string"></property>
+     <property name="batchName" column="batchName" type="string"></property>
+     <property name="doj" column="doj" type="date"></property>
+	 <property name="dor" column="dor" type="date"></property>
+
+  </class>
+ </hibernate-mapping>

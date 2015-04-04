@@ -1,0 +1,58 @@
+create table TBL_Trainee_Absentee_Tailgater
+(
+	empId number(10) primary key,
+	empName varchar2(50),
+	lgName varchar2(50),
+	batchName varchar2(50),
+	project varchar2(50),
+	city varchar2(50),
+	location varchar2(50),
+	dor DATE
+);
+
+create table TBL_Day
+(
+	curDate DATE primary key
+);
+
+create table TBL_Trainee_Day
+(
+	empId number(10) references TBL_Trainee_Absentee_Tailgater(empId),
+	curDate Date references TBL_Day(curDate),
+	status varchar2(10),
+	primary key(empId, curDate)
+);
+
+create table TBL_UserType
+(
+	userTypeId number(5) primary key,
+	userTypeName varchar2(50)
+);
+
+create table TBL_User
+(
+	empId number(10) primary key,
+	userName varchar2(50),
+	password varchar2(50),
+	userTypeId number(5) references TBL_UserType(userTypeId)
+);
+
+create table TBL_Employee
+(
+	empId number(10) references TBL_User(empId),
+	empName varchar2(50),
+	email varchar2(50),
+	designation varchar2(50),
+	location varchar2(50),
+	primary key(empId)
+);
+
+create table TBL_Trainee_Temp
+(
+	empId number(10) primary key,
+	empName varchar2(50),
+	lgName varchar2(50),
+	batchName varchar2(50),
+	doj date,
+	dor date
+);
