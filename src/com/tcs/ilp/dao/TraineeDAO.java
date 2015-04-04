@@ -13,6 +13,7 @@ import org.hibernate.Query;
 import com.tcs.ilp.bean.Day;
 import com.tcs.ilp.bean.Trainee;
 import com.tcs.ilp.bean.TraineeDay;
+import com.tcs.ilp.report.AbsenteeReport;
 import com.tcs.ilp.util.HibernateUtil;
 
 public class TraineeDAO
@@ -130,10 +131,9 @@ public class TraineeDAO
         return aList;
 	}
 
-	public Map<List<Long>, List<Trainee>> absenteesMoreThanTwo()
+	public List<AbsenteeReport> absenteesMoreThanTwo()
 	{
-		List<Long> count = new ArrayList<Long>();
-		List<Trainee> aList = new ArrayList<Trainee>();
+		List<AbsenteeReport> abList = new ArrayList<AbsenteeReport>();
 		Map<List<Long>, List<Trainee>> traineeCountMap = new HashMap<List<Long>, List<Trainee>>();
         try
         {
@@ -150,11 +150,9 @@ public class TraineeDAO
             while(it.hasNext())
     		{
     			Object rows[] = (Object[])it.next();
-    			Trainee t = new Trainee((Long)rows[0],(String)rows[1],(String)rows[2],(String)rows[3],(String)rows[4]);
-    			aList.add(t);
-    			count.add((Long)rows[5]);
+    			AbsenteeReport ab = new AbsenteeReport((Long)rows[0],(String)rows[1],(String)rows[2],(String)rows[3],(String)rows[4],(Long)rows[5]);
+    			abList.add(ab);
     		}
-            traineeCountMap.put(count, aList);
         }
         catch(HibernateException e)
         {
@@ -164,7 +162,7 @@ public class TraineeDAO
         {
             HibernateUtil.closeSession();
         }
-        return traineeCountMap;
+        return abList;
 	}
 
 	public List<Day> getOneAbsenteeDates(Long empId)

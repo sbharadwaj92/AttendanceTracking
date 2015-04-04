@@ -24,6 +24,7 @@ import com.tcs.ilp.bean.TraineeDay;
 import com.tcs.ilp.bean.TraineeDayId;
 import com.tcs.ilp.dao.TempTraineeDAO;
 import com.tcs.ilp.dao.TraineeDAO;
+import com.tcs.ilp.report.AbsenteeReport;
 
 public class TraineeService
 {
@@ -131,7 +132,7 @@ public class TraineeService
 	{
 		return tDao.dailyAbsenteeTailgaters(status, date);
 	}
-	public Map<List<Long>, List<Trainee>> displayAbsenteesMoreThanTwo()
+	public List<AbsenteeReport> displayAbsenteesMoreThanTwo()
 	{
 		return tDao.absenteesMoreThanTwo();
 	}

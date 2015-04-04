@@ -12,39 +12,40 @@
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
 </head>
 <body>
-<s:url var="home" action="index"></s:url>
-<s:a href="%{#home}">HOME</s:a><br><br>
+	<s:url var="home" action="index"></s:url>
+	<s:a href="%{#home}">HOME</s:a><br><br>
 
-<%	ArrayList<Integer> count = (ArrayList<Integer>) request.getAttribute("cList");
-	ArrayList<Trainee> aList = (ArrayList<Trainee>) request.getAttribute("aList"); %>
-	
-<% if(aList!=null && count!=null) { %>
-    		<table border="1">
-				<thead>
-					<tr>
-						<th>EMP ID</th>
-						<th>EMP NAME</th>
-						<th>LG NAME</th>
-						<th>BATCH NAME</th>
-						<th>PROJECT</th>
-						<th>NO OF DAYS ABSENT</th>
+	<s:if test="%{getAbList()!=null}">
+   		<table border="1">
+			<thead>
+				<tr>
+					<th>EMP ID</th>
+					<th>EMP NAME</th>
+					<th>LG NAME</th>
+					<th>BATCH NAME</th>
+					<th>PROJECT</th>
+					<th>NO OF DAYS ABSENT</th>
+				</tr>
+			</thead>
+			<tbody>
+				<s:iterator value="%{getAbList()}">
+					<tr>		
+						<td><s:property value="empId"/></td>
+						<td><s:property value="empName"/></td>
+						<td><s:property value="lgName"/></td>
+						<td><s:property value="batchName"/></td>
+						<td><s:property value="project"/></td>
+						<td>
+							<s:url var="view" action="viewDetails">
+								<s:param name="empId" value="empId"></s:param>
+							</s:url> <s:a href="%{#view}" label="Update"><s:property value="count"/></s:a>
+						</td>
 					</tr>
-				</thead>
-				<tbody>
-					<%for(int i=0;i<count.size();i++) { %>
-						<tr>		
-							<td><%= aList.get(i).getEmpId() %></td>
-							<td><%= aList.get(i).getEmpName() %></td>
-							<td><%= aList.get(i).getLgName() %></td>
-							<td><%= aList.get(i).getBatchName() %></td>
-							<td><%= aList.get(i).getProject() %></td>
-							<td>
-								<a href="<%=request.getContextPath()%>/viewDetails.action?empId=<%= aList.get(i).getEmpId() %>"><%= count.get(i) %></a>
-							</td>
-						</tr>
-					<% } %>
-				</tbody>
-			</table>
-<% } %>
+				</s:iterator>
+			</tbody>
+		</table>
+	</s:if>
 </body>
 </html>
+
+

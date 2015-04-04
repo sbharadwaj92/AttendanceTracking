@@ -16,6 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.tcs.ilp.bean.Day;
 import com.tcs.ilp.bean.Trainee;
+import com.tcs.ilp.report.AbsenteeReport;
 import com.tcs.ilp.service.TraineeService;
 
 public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>, ServletRequestAware
@@ -24,6 +25,7 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	private TraineeService tSvc= new TraineeService();
 	private List<Trainee> aList = new ArrayList<Trainee>();
 	private List<Day> dList = new ArrayList<Day>();
+	private List<AbsenteeReport> abList = new ArrayList<AbsenteeReport>();
 	private HttpServletRequest request;
 	private static final long serialVersionUID = 1L;
 
@@ -83,17 +85,7 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	  who are absent for more than two days*/
 	public String getAbsenteesMoreThanTwo()
 	{
-		Map<List<Long>, List<Trainee>> traineeCountMap = new HashMap<List<Long>, List<Trainee>>();
-		List<Long> cList = new ArrayList<Long>();
-		traineeCountMap=tSvc.displayAbsenteesMoreThanTwo();
-		
-		for (Map.Entry<List<Long>, List<Trainee>> entry : traineeCountMap.entrySet())
-		{
-			cList = entry.getKey();
-			aList = entry.getValue();
-		}
-		request.setAttribute("aList", aList );
-		request.setAttribute("cList", cList);
+		abList=tSvc.displayAbsenteesMoreThanTwo();
 		return SUCCESS;
 	}
 
@@ -122,6 +114,13 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	public void setServletRequest(HttpServletRequest request)
 	{
 		this.request=request;
+	}
+	public List<AbsenteeReport> getAbList() {
+		return abList;
+	}
+
+	public void setAbList(List<AbsenteeReport> abList) {
+		this.abList = abList;
 	}
 
 	public List<Trainee> getaList() {
