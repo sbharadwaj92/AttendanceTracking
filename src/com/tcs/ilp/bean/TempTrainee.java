@@ -11,40 +11,52 @@ public class TempTrainee
 	private Date doj;
 	private Date dor;
 
-	public Long getEmpId() {
+	public Long getEmpId()
+	{
 		return empId;
 	}
-	public void setEmpId(Long empId) {
+	public void setEmpId(Long empId)
+	{
 		this.empId = empId;
 	}
-	public String getEmpName() {
+	public String getEmpName()
+	{
 		return empName;
 	}
-	public void setEmpName(String empName) {
+	public void setEmpName(String empName)
+	{
 		this.empName = empName;
 	}
-	public String getLgName() {
+	public String getLgName()
+	{
 		return lgName;
 	}
-	public void setLgName(String lgName) {
+	public void setLgName(String lgName)
+	{
 		this.lgName = lgName;
 	}
-	public String getBatchName() {
+	public String getBatchName()
+	{
 		return batchName;
 	}
-	public void setBatchName(String batchName) {
+	public void setBatchName(String batchName)
+	{
 		this.batchName = batchName;
 	}
-	public Date getDoj() {
+	public Date getDoj()
+	{
 		return doj;
 	}
-	public void setDoj(Date doj) {
+	public void setDoj(Date doj)
+	{
 		this.doj = doj;
 	}
-	public Date getDor() {
+	public Date getDor()
+	{
 		return dor;
 	}
-	public void setDor(Date dor) {
+	public void setDor(Date dor)
+	{
 		this.dor = dor;
 	}
 }

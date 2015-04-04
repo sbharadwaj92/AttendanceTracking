@@ -13,8 +13,6 @@
 <sj:head />
 </head>
 <body>
-
-	
 	<s:url var="add" action="addTrainee"></s:url>
 	<s:a href="%{#add}">ADD TRAINEE</s:a><br><br>
 	<s:url var="readA" action="dailyAbsentees"></s:url>

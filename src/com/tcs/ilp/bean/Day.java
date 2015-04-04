@@ -16,19 +16,20 @@ public class Day
 	{
 		this.curDate = curDate;
 	}
-	public Date getCurDate() {
+	public Date getCurDate()
+	{
 		return curDate;
 	}
-
-	public void setCurDate(Date curDate) {
+	public void setCurDate(Date curDate)
+	{
 		this.curDate = curDate;
 	}
-
-	public Set<TraineeDay> getdSet() {
+	public Set<TraineeDay> getdSet()
+	{
 		return dSet;
 	}
-
-	public void setdSet(Set<TraineeDay> dSet) {
+	public void setdSet(Set<TraineeDay> dSet)
+	{
 		this.dSet = dSet;
 	}
 }

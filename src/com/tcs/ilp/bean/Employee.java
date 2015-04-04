@@ -9,51 +9,52 @@ public class Employee
 	
 	private User user;
 
-	public Long getEmpId() {
+	public Long getEmpId()
+	{
 		return empId;
 	}
-
-	public void setEmpId(Long empId) {
+	public void setEmpId(Long empId)
+	{
 		this.empId = empId;
 	}
-
-	public String getEmpName() {
+	public String getEmpName()
+	{
 		return empName;
 	}
-
-	public void setEmpName(String empName) {
+	public void setEmpName(String empName)
+	{
 		this.empName = empName;
 	}
-
-	public String getEmail() {
+	public String getEmail()
+	{
 		return email;
 	}
-
-	public void setEmail(String email) {
+	public void setEmail(String email)
+	{
 		this.email = email;
 	}
-
-	public String getDesignation() {
+	public String getDesignation()
+	{
 		return designation;
 	}
-
-	public void setDesignation(String designation) {
+	public void setDesignation(String designation)
+	{
 		this.designation = designation;
 	}
-
-	public String getLocation() {
+	public String getLocation()
+	{
 		return location;
 	}
-
-	public void setLocation(String location) {
+	public void setLocation(String location)
+	{
 		this.location = location;
 	}
-
-	public User getUser() {
+	public User getUser()
+	{
 		return user;
 	}
-
-	public void setUser(User user) {
+	public void setUser(User user)
+	{
 		this.user = user;
 	}
 }

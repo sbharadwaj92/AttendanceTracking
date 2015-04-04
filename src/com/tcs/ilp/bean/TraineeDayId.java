@@ -6,24 +6,26 @@ public class TraineeDayId implements java.io.Serializable
 	private static final long serialVersionUID = -9026465793685196471L;
 	private Long empId;
 	private Date curDate;
-	public Long getEmpId() {
+	public Long getEmpId()
+	{
 		return empId;
 	}
-
-	public void setEmpId(Long empId) {
+	public void setEmpId(Long empId)
+	{
 		this.empId = empId;
 	}
-
-	public Date getCurDate() {
+	public Date getCurDate()
+	{
 		return curDate;
 	}
-
-	public void setCurDate(Date curDate) {
+	public void setCurDate(Date curDate)
+	{
 		this.curDate = curDate;
 	}
-
+	
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((curDate == null) ? 0 : curDate.hashCode());
@@ -32,7 +34,8 @@ public class TraineeDayId implements java.io.Serializable
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj)
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -53,4 +56,3 @@ public class TraineeDayId implements java.io.Serializable
 		return true;
 	}
 }
-

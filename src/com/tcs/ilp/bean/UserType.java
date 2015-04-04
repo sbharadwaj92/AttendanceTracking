@@ -13,28 +13,28 @@ public class UserType
 	{
 		uSet = new HashSet<User>();
 	}
-	public int getUserTypeId() {
+	public int getUserTypeId()
+	{
 		return userTypeId;
 	}
-
-	public void setUserTypeId(int userTypeId) {
+	public void setUserTypeId(int userTypeId)
+	{
 		this.userTypeId = userTypeId;
 	}
-
-	public String getUserTypeName() {
+	public String getUserTypeName()
+	{
 		return userTypeName;
 	}
-
-	public void setUserTypeName(String userTypeName) {
+	public void setUserTypeName(String userTypeName)
+	{
 		this.userTypeName = userTypeName;
 	}
-
-	public Set<User> getuSet() {
+	public Set<User> getuSet()
+	{
 		return uSet;
 	}
-
-	public void setuSet(Set<User> uSet) {
+	public void setuSet(Set<User> uSet)
+	{
 		this.uSet = uSet;
 	}
-
 }

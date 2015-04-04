@@ -7,29 +7,36 @@ public class TraineeDay
 	private Trainee trainee;
 	private String status;
 	
-	public TraineeDayId getId() {
+	public TraineeDayId getId()
+	{
 		return id;
 	}
-	public void setId(TraineeDayId id) {
+	public void setId(TraineeDayId id)
+	{
 		this.id = id;
 	}
-	public Day getDay() {
+	public Day getDay()
+	{
 		return day;
 	}
-	public void setDay(Day day) {
+	public void setDay(Day day)
+	{
 		this.day = day;
 	}
-	public Trainee getTrainee() {
+	public Trainee getTrainee()
+	{
 		return trainee;
 	}
-	public void setTrainee(Trainee trainee) {
+	public void setTrainee(Trainee trainee)
+	{
 		this.trainee = trainee;
 	}
-	public String getStatus() {
+	public String getStatus()
+	{
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(String status)
+	{
 		this.status = status;
 	}
 }
-

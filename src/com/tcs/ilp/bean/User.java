@@ -8,34 +8,45 @@ public class User
 	
 	private Employee employee;
 	private UserType userType;
-	public Long getEmpId() {
+	
+	public Long getEmpId()
+	{
 		return empId;
 	}
-	public void setEmpId(Long empId) {
+	public void setEmpId(Long empId)
+	{
 		this.empId = empId;
 	}
-	public String getUserName() {
+	public String getUserName()
+	{
 		return userName;
 	}
-	public void setUserName(String userName) {
+	public void setUserName(String userName)
+	{
 		this.userName = userName;
 	}
-	public String getPassword() {
+	public String getPassword()
+	{
 		return password;
 	}
-	public void setPassword(String password) {
+	public void setPassword(String password)
+	{
 		this.password = password;
 	}
-	public Employee getEmployee() {
+	public Employee getEmployee()
+	{
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
+	public void setEmployee(Employee employee)
+	{
 		this.employee = employee;
 	}
-	public UserType getUserType() {
+	public UserType getUserType()
+	{
 		return userType;
 	}
-	public void setUserType(UserType userType) {
+	public void setUserType(UserType userType)
+	{
 		this.userType = userType;
 	}
 }

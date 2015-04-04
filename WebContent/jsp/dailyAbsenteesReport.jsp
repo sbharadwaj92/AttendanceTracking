@@ -3,6 +3,7 @@
     <%@ page import="java.util.Date , java.text.SimpleDateFormat" %>
     <%@ taglib prefix="s" uri="/struts-tags" %>
     <%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+    <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,7 @@
 <s:url var="home" action="index"></s:url>
 <s:a href="%{#home}">HOME</s:a><br><br>
 
-    <s:form id="form" theme="simple" action="getAbsentees">
+    <s:form id="form" action="getAbsentees"  theme="bootstrap" cssClass="form-horizontal">
       <sj:datepicker id="date0" name="date1" displayFormat="dd-mm-yy" label="Select a Date" />
 		<s:submit value="submit" name="submit" />
     </s:form>
