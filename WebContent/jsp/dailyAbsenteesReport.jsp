@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap-datepicker3.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 <script src="<%= request.getContextPath() %>/js/jquery.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap-datepicker.js"></script>
@@ -23,14 +24,14 @@
 <form class="form-inline" id="form" action="getAbsentees">
   <div class="form-group inner-addon left-addon col-md-2" id="sandbox-container">
   	<i class="glyphicon glyphicon-calendar"></i>
-    <input type="text" name="date1" class="form-control" placeholder="Select Date" />
+    <input type="text" name="date1" class="form-control" placeholder="Select Date" autocomplete="off"/>
   </div>&nbsp;&nbsp;
   <button type="submit" class="btn btn-primary submitBtn">Submit</button>
 </form><br>
 
     <s:if test="%{getaList()!=null}">			
-		<div>
-			<table class="table table-bordered table-hover" style="width:800px;">
+		<div style="width:800px">
+	   		<table id="viewtable" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>EMP ID</th>

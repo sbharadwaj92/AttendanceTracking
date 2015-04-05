@@ -9,4 +9,5 @@ $(document).ready(function () {
 	    autoclose: true,
 	    endDate: "-1d"
 	});
+	$('#viewtable').dataTable();
 });

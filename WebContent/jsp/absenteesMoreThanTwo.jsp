@@ -8,16 +8,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap-datepicker3.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 <script src="<%= request.getContextPath() %>/js/jquery.js"></script>
+<script src="<%= request.getContextPath() %>/js/bootstrap-datepicker.js"></script>
+<script src="<%= request.getContextPath() %>/js/jquery-data-table.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
+<script src="<%= request.getContextPath() %>/js/custom.js"></script>
 </head>
 <body>
 	<s:url var="home" action="index"></s:url>
 	<s:a href="%{#home}">HOME</s:a><br><br>
 
 	<s:if test="%{getAbList()!=null}">
-		<div>
-	   		<table class="table table-bordered table-hover" style="width:800px;">
+		<div style="width:800px">
+	   		<table id="viewtable" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>EMP ID</th>

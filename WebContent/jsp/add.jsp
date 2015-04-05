@@ -9,36 +9,26 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap-datepicker3.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/jquery.dataTables.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/font.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/default.css">
 <script src="<%= request.getContextPath() %>/js/jquery.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap-datepicker.js"></script>
 <script src="<%= request.getContextPath() %>/js/jquery-data-table.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
 <script src="<%= request.getContextPath() %>/js/custom.js"></script>
-<script>
-
-</script>
-<style type="text/css">
-
-
-</style>
 </head>
 <body>
-
-<s:url var="home" action="index"></s:url>
-<s:a href="%{#home}">HOME</s:a><br><br>
-
-
-
-<form class="form-inline" id="form" action="getRecords">
-  <div class="form-group inner-addon left-addon col-md-2" id="sandbox-container">
-  	<i class="glyphicon glyphicon-calendar"></i>
-    <input type="text" name="date1" class="form-control" placeholder="Select Date" />
-  </div>&nbsp;&nbsp;
-  <button type="submit" class="btn btn-primary submitBtn">Submit</button>
-</form>
-
+	<s:url var="home" action="index"></s:url>
+	<s:a href="%{#home}">HOME</s:a><br><br>
+	
+	<form class="form-inline" id="form" action="getRecords">
+		<div class="form-group inner-addon left-addon col-md-2" id="sandbox-container">
+			<i class="glyphicon glyphicon-calendar"></i>
+			<input type="text" name="date1" class="form-control" placeholder="Select Date" autocomplete="off" />
+		</div>&nbsp;&nbsp;
+		<button type="submit" class="btn btn-primary submitBtn">Submit</button>
+	</form>
 </body>
 </html>
-
-
