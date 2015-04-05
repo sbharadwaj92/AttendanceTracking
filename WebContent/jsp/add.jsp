@@ -8,29 +8,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap-datepicker3.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 <script src="<%= request.getContextPath() %>/js/jquery.js"></script>
+<script src="<%= request.getContextPath() %>/js/bootstrap-datepicker.js"></script>
+<script src="<%= request.getContextPath() %>/js/jquery-data-table.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
+<script src="<%= request.getContextPath() %>/js/custom.js"></script>
 <script>
-$(document).ready(function () {
-    $("#form").submit(function () {
-        $(".submitBtn").attr("disabled", true);
-        return true;
-    });
-});
+
 </script>
-<sj:head />
-<style>
+<style type="text/css">
+
+
 </style>
 </head>
 <body>
+
 <s:url var="home" action="index"></s:url>
 <s:a href="%{#home}">HOME</s:a><br><br>
 
-    <s:form id="form" action="getRecords" theme="simple">
-      <sj:datepicker name="date1" displayFormat="dd-mm-yy" label="Select a Date" required="true"/>
-		<s:submit value="Submit" cssClass="btn btn-primary submitBtn"/>
-    </s:form>
-    
+
+
+<form class="form-inline" id="form" action="getRecords">
+  <div class="form-group inner-addon left-addon col-md-2" id="sandbox-container">
+  	<i class="glyphicon glyphicon-calendar"></i>
+    <input type="text" name="date1" class="form-control" placeholder="Select Date" />
+  </div>&nbsp;&nbsp;
+  <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+</form>
 
 </body>
 </html>
+
+

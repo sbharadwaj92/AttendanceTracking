@@ -15,6 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.tcs.ilp.bean.Day;
 import com.tcs.ilp.bean.Trainee;
+import com.tcs.ilp.exception.DayExistsException;
 import com.tcs.ilp.exception.EmptyDateException;
 import com.tcs.ilp.exception.InvalidDateException;
 import com.tcs.ilp.report.AbsenteeReport;
@@ -34,7 +35,7 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 
 	/*This method is use to insert Trainee Records into our own database 
 	by comparing the Status and Date of Release of Trainee*/
-	public String insertTrainee() throws EmptyDateException, ParseException, IOException, InvalidDateException
+	public String insertTrainee() throws EmptyDateException, ParseException, IOException, InvalidDateException, DayExistsException
 	{
 		int count=0;
 		String selDate = request.getParameter("date1"); //getting the date parameter from datepicker in jsp

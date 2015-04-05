@@ -194,4 +194,31 @@ public class TraineeDAO
         }
         return dList;
 	}
+
+	public boolean checkIfDayExists(Date curDate)
+	{
+        Day d=null;
+        try
+        {
+            HibernateUtil.beginTransaction();
+            d=(Day) HibernateUtil.getSession().get(Day.class, curDate);
+            HibernateUtil.commitTransaction();
+        }
+        catch(HibernateException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            HibernateUtil.closeSession();
+        }
+        if(d==null)
+		{
+        	return false;
+		}
+        else
+        {
+        	return true;
+        }   
+	}
 }
