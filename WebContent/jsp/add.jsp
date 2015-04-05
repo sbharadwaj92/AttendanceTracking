@@ -26,9 +26,10 @@
 	<form class="form-inline" id="form" action="getRecords">
 		<div class="form-group inner-addon left-addon col-md-2" id="sandbox-container">
 			<i class="glyphicon glyphicon-calendar"></i>
-			<input type="text" name="date1" class="form-control" placeholder="Select Date" autocomplete="off" />
+			<input type="text" name="date1" class="form-control" placeholder="dd-mm-yyyy" autocomplete="off" required />
 		</div>&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary submitBtn">Submit</button>
 	</form>
+	
 </body>
 </html>

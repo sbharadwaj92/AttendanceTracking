@@ -10,10 +10,12 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap-datepicker3.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/dataTables.tableTools.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 <script src="<%= request.getContextPath() %>/js/jquery.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap-datepicker.js"></script>
 <script src="<%= request.getContextPath() %>/js/jquery-data-table.js"></script>
+<script src="<%= request.getContextPath() %>/js/dataTables.tableTools.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
 <script src="<%= request.getContextPath() %>/js/custom.js"></script>
 </head>
@@ -55,5 +57,3 @@
 	</s:if>
 </body>
 </html>
-
-

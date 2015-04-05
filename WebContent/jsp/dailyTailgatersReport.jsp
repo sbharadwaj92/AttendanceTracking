@@ -10,10 +10,12 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap-datepicker3.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/dataTables.tableTools.css">
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/style.css">
 <script src="<%= request.getContextPath() %>/js/jquery.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap-datepicker.js"></script>
 <script src="<%= request.getContextPath() %>/js/jquery-data-table.js"></script>
+<script src="<%= request.getContextPath() %>/js/dataTables.tableTools.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
 <script src="<%= request.getContextPath() %>/js/custom.js"></script>
 </head>
@@ -24,7 +26,7 @@
 <form class="form-inline" id="form" action="getTailgaters">
   <div class="form-group inner-addon left-addon col-md-2" id="sandbox-container">
   	<i class="glyphicon glyphicon-calendar"></i>
-    <input type="text" name="date1" class="form-control" placeholder="Select Date" autocomplete="off"/>
+    <input type="text" name="date1" class="form-control" placeholder="dd-mm-yyyy" autocomplete="off" required/>
   </div>&nbsp;&nbsp;
   <button type="submit" class="btn btn-primary submitBtn">Submit</button>
 </form><br>

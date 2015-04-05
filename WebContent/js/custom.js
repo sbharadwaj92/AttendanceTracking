@@ -9,5 +9,11 @@ $(document).ready(function () {
 	    autoclose: true,
 	    endDate: "-1d"
 	});
-	$('#viewtable').dataTable();
+	$('#viewtable').dataTable({
+        "sDom": 'T<"clear">lfrtip',
+            "oTableTools": {
+            "sSwfPath": "js/copy_csv_xls_pdf.swf",
+                "aButtons": ["copy", "csv", "xls", "pdf", "print"]
+        }
+    });
 });
