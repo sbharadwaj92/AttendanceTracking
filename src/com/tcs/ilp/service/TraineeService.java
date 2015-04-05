@@ -32,13 +32,7 @@ public class TraineeService
 
 	public int retrieveTrainees(Date date) throws ParseException, IOException, DayExistsException
 	{
-		SimpleDateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");
-		int addTraineeCount = 0;
-		String fileName = "E:\\STATUS_"+sd.format(date)+".xls"; //appending date to get appropriate excel file
-	 	FileInputStream file = new FileInputStream(new File(fileName));
-		HSSFWorkbook workbook = new HSSFWorkbook(file);
-        HSSFSheet sheet = workbook.getSheetAt(0); //reading sheet 1
-        Day d = new Day();
+		Day d = new Day();
         d.setCurDate(date);
         if(tDao.checkIfDayExists(d.getCurDate()))
         {
@@ -46,6 +40,12 @@ public class TraineeService
         }
         else
         {
+			SimpleDateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");
+			int addTraineeCount = 0;
+			String fileName = "E:\\STATUS_"+sd.format(date)+".xls"; //appending date to get appropriate excel file
+		 	FileInputStream file = new FileInputStream(new File(fileName));
+			HSSFWorkbook workbook = new HSSFWorkbook(file);
+	        HSSFSheet sheet = workbook.getSheetAt(0); //reading sheet 1
 	        tDao.insertDay(d);
 	        int count=0; //Stores the Column value so that variables can be retrieved and set in a proper order
 	        Iterator<Row> rowIterator = sheet.iterator(); //To iterate the excel sheet row by row
@@ -119,13 +119,13 @@ public class TraineeService
 	                addTraineeCount++;
 	        	}
 	        }
+	        workbook.close();
+	        file.close();
+	        FileOutputStream out = new FileOutputStream(new File("E:\\STATUS_"+sd.format(date)+".xls"));
+	        workbook.write(out);
+	        out.close();
+			return addTraineeCount;
         }
-        workbook.close();
-        file.close();
-        FileOutputStream out = new FileOutputStream(new File("E:\\STATUS_"+sd.format(date)+".xls"));
-        workbook.write(out);
-        out.close();
-		return addTraineeCount;
 	}
 	public List<Trainee> displayDailyAbsenteeTrailgater(String status, Date date)
 	{
