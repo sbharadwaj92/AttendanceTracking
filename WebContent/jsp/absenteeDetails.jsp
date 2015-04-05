@@ -16,7 +16,7 @@
 	<s:a href="%{#readT}">BACK</s:a><br><br>
 	
 	<s:if test="%{getdList()!=null}">	
-		<table border="1">
+		<table class="table table-bordered table-hover" style="width:100px">
 			<tr>
 				<th>DATE</th>
 			</tr>

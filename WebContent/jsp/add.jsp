@@ -10,16 +10,27 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap.css">
 <script src="<%= request.getContextPath() %>/js/jquery.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
+<script>
+$(document).ready(function () {
+    $("#form").submit(function () {
+        $(".submitBtn").attr("disabled", true);
+        return true;
+    });
+});
+</script>
 <sj:head />
+<style>
+</style>
 </head>
 <body>
 <s:url var="home" action="index"></s:url>
 <s:a href="%{#home}">HOME</s:a><br><br>
 
     <s:form id="form" action="getRecords" theme="simple">
-      <sj:datepicker name="date1" displayFormat="dd-mm-yy" label="Select a Date"/>
-		<s:submit value="submit" name="submit" />
+      <sj:datepicker name="date1" displayFormat="dd-mm-yy" label="Select a Date" required="true"/>
+		<s:submit value="Submit" cssClass="btn btn-primary submitBtn"/>
     </s:form>
+    
 
 </body>
 </html>

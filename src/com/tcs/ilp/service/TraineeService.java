@@ -28,7 +28,7 @@ public class TraineeService
 {
 	TraineeDAO tDao = new TraineeDAO();
 	TempTraineeDAO ttDao = new TempTraineeDAO();
-	
+
 	public int retrieveTrainees(Date date) throws ParseException, IOException
 	{
 		SimpleDateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");
@@ -61,8 +61,7 @@ public class TraineeService
                     	
                     	/* Numeric value in excel is always considered as Double in java, 
                     	 * type casting from double to long is not allowed in java and hence achieving
-                    	 * it through Math.round function */
-                    	
+                    	 * it through Math.round function since we know that that decimal part is always zero*/
                     	t.setEmpId(Math.round(cell.getNumericCellValue())); 
                     	break;
                     	
@@ -86,7 +85,7 @@ public class TraineeService
                     	break;
                 }
             }
-    		TempTrainee tt = new TempTrainee();  //Trainee object which containes the date of release
+    		TempTrainee tt = new TempTrainee();  //Trainee object which contains the date of release
     		tt=ttDao.getTraineeBatchLgDorDetails(t.getEmpId());
     		if(tt.getDor()!=null)
 			{

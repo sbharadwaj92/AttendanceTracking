@@ -16,34 +16,36 @@
 	<s:a href="%{#home}">HOME</s:a><br><br>
 
 	<s:if test="%{getAbList()!=null}">
-   		<table border="1">
-			<thead>
-				<tr>
-					<th>EMP ID</th>
-					<th>EMP NAME</th>
-					<th>LG NAME</th>
-					<th>BATCH NAME</th>
-					<th>PROJECT</th>
-					<th>NO OF DAYS ABSENT</th>
-				</tr>
-			</thead>
-			<tbody>
-				<s:iterator value="%{getAbList()}">
-					<tr>		
-						<td><s:property value="empId"/></td>
-						<td><s:property value="empName"/></td>
-						<td><s:property value="lgName"/></td>
-						<td><s:property value="batchName"/></td>
-						<td><s:property value="project"/></td>
-						<td>
-							<s:url var="view" action="viewDetails">
-								<s:param name="empId" value="empId"></s:param>
-							</s:url> <s:a href="%{#view}" label="Update"><s:property value="count"/></s:a>
-						</td>
+		<div>
+	   		<table class="table table-bordered table-hover" style="width:800px;">
+				<thead>
+					<tr>
+						<th>EMP ID</th>
+						<th>EMP NAME</th>
+						<th>LG NAME</th>
+						<th>BATCH NAME</th>
+						<th>PROJECT</th>
+						<th>NO OF DAYS ABSENT</th>
 					</tr>
-				</s:iterator>
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<s:iterator value="%{getAbList()}">
+						<tr>		
+							<td><s:property value="empId"/></td>
+							<td><s:property value="empName"/></td>
+							<td><s:property value="lgName"/></td>
+							<td><s:property value="batchName"/></td>
+							<td><s:property value="project"/></td>
+							<td>
+								<s:url var="view" action="viewDetails">
+									<s:param name="empId" value="empId"></s:param>
+								</s:url> <s:a href="%{#view}" label="Update"><s:property value="count"/></s:a>
+							</td>
+						</tr>
+					</s:iterator>
+				</tbody>
+			</table>
+		</div>
 	</s:if>
 </body>
 </html>

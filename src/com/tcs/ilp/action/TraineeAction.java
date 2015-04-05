@@ -15,6 +15,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.tcs.ilp.bean.Day;
 import com.tcs.ilp.bean.Trainee;
+import com.tcs.ilp.exception.EmptyDateException;
+import com.tcs.ilp.exception.InvalidDateException;
 import com.tcs.ilp.report.AbsenteeReport;
 import com.tcs.ilp.service.TraineeService;
 
@@ -25,37 +27,32 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	private List<Trainee> aList = new ArrayList<Trainee>(); //List to Store either absentees or tailgaters
 	private List<Day> dList = new ArrayList<Day>(); //List to store the days where a particular employee is absent
 	private List<AbsenteeReport> abList = new ArrayList<AbsenteeReport>(); //List to store absentees who are absent for more than two days
+	private Day day = new Day();
 	private HttpServletRequest request; //http servlet request to get non model driven variables from jsp
 	
 	private static final long serialVersionUID = 1L;
 
 	/*This method is use to insert Trainee Records into our own database 
 	by comparing the Status and Date of Release of Trainee*/
-	public String insertTrainee()
+	public String insertTrainee() throws EmptyDateException, ParseException, IOException, InvalidDateException
 	{
 		int count=0;
-		Date date=null;
 		String selDate = request.getParameter("date1"); //getting the date parameter from datepicker in jsp
+		System.out.println(selDate);
+		if(selDate == null)
+		{
+			throw new EmptyDateException();
+		}
 		SimpleDateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");
-		try
-		{
-			date = sd.parse(selDate);
-		}
-		catch (ParseException e)
-		{
-			e.printStackTrace();
-		}
+		day.setCurDate(sd.parse(selDate));
 		Date today = new Date();
-		if(date.compareTo(today)<0) //checking if the selected date is less than the current date
+		if(day.getCurDate().compareTo(today)<0) //checking if the selected date is less than the current date
 		{
-			try
-			{
-				count=tSvc.retrieveTrainees(date);
-			}
-			catch (ParseException | IOException e)
-			{
-				e.printStackTrace();
-			}
+				count=tSvc.retrieveTrainees(day.getCurDate());
+		}
+		else
+		{
+			throw new InvalidDateException();
 		}
 		request.setAttribute("count", count);
 		return SUCCESS;
@@ -65,16 +62,14 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	  who are absent on that particular day*/
 	public String getDailyAbsenteesList() throws ParseException
 	{
-		Date date=null;
 		String selDate = request.getParameter("date1");
 		SimpleDateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");
-		date = sd.parse(selDate);
+		day.setCurDate(sd.parse(selDate));
 		Date today = new Date();
-		if(date.compareTo(today)<0) //checking if the selected date is less than the current date
+		if(day.getCurDate().compareTo(today)<0) //checking if the selected date is less than the current date
 		{
-			aList = tSvc.displayDailyAbsenteeTrailgater("A", date); //Status "A" is considered as absent
+			aList = tSvc.displayDailyAbsenteeTrailgater("A", day.getCurDate()); //Status "A" is considered as absent
 		}
-        request.setAttribute("date", date);
 		return SUCCESS;
 	}
 	
@@ -82,16 +77,14 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	  who have swapped one time on that particular day*/
 	public String getDailyTailgatersList() throws ParseException
 	{
-		Date date=null;
 		String selDate = request.getParameter("date1");
 		SimpleDateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");
-		date = sd.parse(selDate);
+		day.setCurDate(sd.parse(selDate));
 		Date today = new Date();
-		if(date.compareTo(today)<0) //checking if the selected date is less than the current date
+		if(day.getCurDate().compareTo(today)<0) //checking if the selected date is less than the current date
 		{
-			aList = tSvc.displayDailyAbsenteeTrailgater("0.00", date); //Status "0.00" is considered as tailgating
+			aList = tSvc.displayDailyAbsenteeTrailgater("0.00", day.getCurDate()); //Status "0.00" is considered as tailgating
 		}
-        request.setAttribute("date", date);
 		return SUCCESS;
 	}
 	
@@ -103,7 +96,7 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 		return SUCCESS;
 	}
 
-	/*This methos is used to get list of days when a particular employee was absent*/
+	/*This method is used to get list of days when a particular employee was absent*/
 	public String getOneAbsentee()
 	{
 		String sEmpId = request.getParameter("empId");
@@ -144,4 +137,13 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	{
 		this.aList = aList;
 	}
+	public Day getDay()
+	{
+		return day;
+	}
+	public void setDay(Day day)
+	{
+		this.day = day;
+	}
+	
 }

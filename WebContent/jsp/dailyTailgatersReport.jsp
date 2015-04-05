@@ -11,21 +11,29 @@
 <link rel="stylesheet" type="text/css" href="<%= request.getContextPath() %>/css/bootstrap.css">
 <script src="<%= request.getContextPath() %>/js/jquery.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
+<script src="<%= request.getContextPath() %>/js/jquery-data-table.js"></script>
 <sj:head />
+<script>
+$(document).ready(function () {
+    $("#form").submit(function () {
+        $(".submitBtn").attr("disabled", true);
+        return true;
+    });
+});
+</script>
 </head>
 <body>
 <s:url var="home" action="index"></s:url>
 <s:a href="%{#home}">HOME</s:a><br><br>
 
     <s:form id="form" action="getTailgaters" theme="simple">
-      <sj:datepicker id="date0" name="date1" displayFormat="dd-mm-yy" label="Select a Date" />
-		<s:submit value="submit" name="submit" />
-    </s:form>
+      <sj:datepicker name="date1" displayFormat="dd-mm-yy" label="Select a Date"  required="true"/>
+		<s:submit value="Submit" cssClass="btn btn-primary submitBtn"/>
+    </s:form><br>
         
-    <s:if test="%{getaList()!=null}">
-        <% Date date = (Date) request.getAttribute("date"); 
-       SimpleDateFormat sd = new SimpleDateFormat ("dd-MMM-yyyy");	%>
-    		<table border="1">
+    <s:if test="%{getaList()!=null}">			
+		<div>
+			<table class="table table-bordered table-hover" style="width:800px;">
 				<thead>
 					<tr>
 						<th>EMP ID</th>
@@ -38,19 +46,20 @@
 					</tr>
 				</thead>
 				<tbody>
-				<s:iterator value="%{getaList()}">
-					<tr>
-						<td><s:property value="empId" /></td>
-						<td><s:property value="empName" /></td>
-						<td><%= sd.format(date) %></td>
-						<td><s:property value="batchName" /></td>
-						<td><s:property value="batchName" /></td>
-						<td><s:property value="project" /></td>
-						<td><s:property value="location" /></td>
-					</tr>
+					<s:iterator value="%{getaList()}">
+						<tr>
+							<td><s:property value="empId" /></td>
+							<td><s:property value="empName" /></td>
+							<td><s:date name="day.curDate" format="dd-MMM-yyyy" /></td>
+							<td><s:property value="batchName" /></td>
+							<td><s:property value="batchName" /></td>
+							<td><s:property value="project" /></td>
+							<td><s:property value="location" /></td>
+						</tr>
 					</s:iterator>
 				</tbody>
 			</table>
-		</s:if>
+		</div>	
+	</s:if>
 </body>
 </html>
