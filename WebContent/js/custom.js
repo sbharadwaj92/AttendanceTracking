@@ -20,4 +20,9 @@ $(document).ready(function () {
         event.preventDefault();
 
      });
+    $('#sandbox-container2 .input-daterange').datepicker({
+        format: "dd/mm/yyyy",
+        endDate: "-1d",
+        autoclose: true
+    });
 });

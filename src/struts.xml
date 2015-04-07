@@ -55,6 +55,13 @@
 			<result name="success">/jsp/absenteeDetails.jsp</result>
 		</action>
 
+		<action name="absenteesbtTwoDates" class="com.tcs.ilp.action.TraineeAction"
+			method="getAbsenteesbtTwoDates">
+			<result name="success">/jsp/absenteesBetweenTwoDates.jsp</result>
+		</action>
+		
+		
+		
 	</package>
 	<package name="extension" namespace="/" extends="json-default">
 			<interceptors>

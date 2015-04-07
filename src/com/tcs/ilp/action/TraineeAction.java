@@ -105,6 +105,11 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 		dList = tSvc.getOneAbsenteeDetails(trainee.getEmpId());
 		return SUCCESS;
 	}
+	
+	public String getAbsenteesbtTwoDates()
+	{
+		return SUCCESS;
+	}
 	public List<Day> getdList()
 	{
 		return dList;

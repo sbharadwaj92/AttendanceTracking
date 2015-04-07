@@ -21,5 +21,7 @@
 	<s:a href="%{#readT}">VIEW DAILY TAILGATERS</s:a><br><br>
 	<s:url var="readT" action="absenteesMoreThanTwo"></s:url>
 	<s:a href="%{#readT}">VIEW ABSENTEES ABSENT FOR MORE THAN 2 DAYS</s:a><br><br>
+	<s:url var="readBT" action="absenteesbtTwoDates"></s:url>
+	<s:a href="%{#readBT}">VIEW ABSENTEES BETWEEN TWO DATES</s:a><br><br>
 </body>
 </html>

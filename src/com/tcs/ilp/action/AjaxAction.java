@@ -18,6 +18,7 @@ public class AjaxAction extends ActionSupport
 	/*This method is used to get list of days when a particular employee was absent*/
 	public String getOneAbsentee()
 	{
+		System.out.println("Ajax Query");
 		SimpleDateFormat sd = new SimpleDateFormat ("dd-MMM-yyyy");
 		Long epId = Long.parseLong(empId);
 		dList = tSvc.getOneAbsenteeDetails(epId);

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@ page import="java.util.ArrayList , com.tcs.ilp.bean.Trainee" %>
+    <%@ page import="java.util.Date , java.text.SimpleDateFormat" %>
     <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html>
 <html>
@@ -18,57 +18,53 @@
 <script src="<%= request.getContextPath() %>/js/dataTables.tableTools.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
 <script src="<%= request.getContextPath() %>/js/custom.js"></script>
-<script src="<%= request.getContextPath() %>/js/jqueryAjax.js"></script>
 </head>
 <body>
-	<s:url var="home" action="index"></s:url>
-	<s:a href="%{#home}">HOME</s:a><br><br>
+<s:url var="home" action="index"></s:url>
+<s:a href="%{#home}">HOME</s:a><br><br>
 
-	<s:if test="%{getAbList()!=null}">
+<form class="form-inline" id="sandbox-container2" action="getAbsentees" style="width: 400px;">
+<div class="input-daterange input-group" >
+    <input type="text" class="input-sm form-control" name="start" />
+    <span class="input-group-addon">to</span>
+    <input type="text" class="input-sm form-control" name="end" />
+</div>
+  <button type="submit" class="btn btn-primary submitBtn">Submit</button>
+</form><br>
+
+    <s:if test="%{getaList()!=null}">			
 		<div style="width:800px">
 	   		<table id="viewtable" class="table table-bordered table-hover">
 				<thead>
 					<tr>
 						<th>EMP ID</th>
 						<th>EMP NAME</th>
+						<th>DATE</th>
 						<th>LG NAME</th>
 						<th>BATCH NAME</th>
 						<th>PROJECT</th>
-						<th>NO OF DAYS ABSENT</th>
+						<th>LOCATION</th>
 					</tr>
 				</thead>
 				<tbody>
-					<s:iterator value="%{getAbList()}">
-						<tr>		
-							<td><s:property value="empId"/></td>
-							<td><s:property value="empName"/></td>
-							<td><s:property value="lgName"/></td>
-							<td><s:property value="batchName"/></td>
-							<td><s:property value="project"/></td>
-							<td>
-								<s:a
-									href="%{empId}"
-									cssClass="info_link"
-									role="button"
-									data-toggle="popover"
-									data-trigger="focus"
-									data-html="true"
-									data-content="">
-									<s:property value="count"/>
-									
-								</s:a>
-							</td>
+					<s:iterator value="%{getaList()}">
+						<tr>
+							<td><s:property value="empId" /></td>
+							<td><s:property value="empName" /></td>
+							<td><s:date name="day.curDate" format="dd-MMM-yyyy" /></td>
+							<td><s:property value="batchName" /></td>
+							<td><s:property value="batchName" /></td>
+							<td><s:property value="project" /></td>
+							<td><s:property value="location" /></td>
 						</tr>
 					</s:iterator>
 				</tbody>
 			</table>
-		</div>
+		</div>	
 	</s:if>
 </body>
-<style>
-.popover
-{
-	width: 17%;
-}
-</style>
+<script>
+
+</script>
+
 </html>
