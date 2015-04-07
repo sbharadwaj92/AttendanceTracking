@@ -16,4 +16,8 @@ $(document).ready(function () {
                 "aButtons": ["copy", "csv", "xls", "pdf", "print"]
         }
     });
+    $(document).on("click", ".info_link", function(event) {
+        event.preventDefault();
+
+     });
 });

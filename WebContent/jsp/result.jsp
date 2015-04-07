@@ -10,7 +10,7 @@
 <body>
 <s:url var="home" action="index"></s:url>
 <s:a href="%{#home}">HOME</s:a><br><br>
-<% int count = (int) request.getAttribute("count"); %>
+<% int count = (Integer) request.getAttribute("count"); %>
 <%= count  %> &nbsp; Absentees/Tailgaters found on the day 
 </body>
 </html>

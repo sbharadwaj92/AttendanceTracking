@@ -18,6 +18,7 @@
 <script src="<%= request.getContextPath() %>/js/dataTables.tableTools.js"></script>
 <script src="<%= request.getContextPath() %>/js/bootstrap.js"></script>
 <script src="<%= request.getContextPath() %>/js/custom.js"></script>
+<script src="<%= request.getContextPath() %>/js/jqueryAjax.js"></script>
 </head>
 <body>
 	<s:url var="home" action="index"></s:url>
@@ -45,9 +46,17 @@
 							<td><s:property value="batchName"/></td>
 							<td><s:property value="project"/></td>
 							<td>
-								<s:url var="view" action="viewDetails">
-									<s:param name="empId" value="empId"></s:param>
-								</s:url> <s:a href="%{#view}" label="Update"><s:property value="count"/></s:a>
+								<s:a
+									href="%{empId}"
+									cssClass="info_link"
+									role="button"
+									data-toggle="popover"
+									data-trigger="focus"
+									data-html="true"
+									data-content="">
+									<s:property value="count"/>
+									
+								</s:a>
 							</td>
 						</tr>
 					</s:iterator>
@@ -56,4 +65,14 @@
 		</div>
 	</s:if>
 </body>
+<script>	
+	
+
+</script>
+<style>
+.popover
+{
+	width: 17%;
+}
+</style>
 </html>

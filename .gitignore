@@ -1,5 +1,6 @@
-WebContent/WEB-INF/lib/
+WebContent/WEB-INF/
 .settings
 .classpath
 .project
 build
+src/hibernate.cfg.xml

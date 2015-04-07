@@ -30,7 +30,6 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	private List<AbsenteeReport> abList = new ArrayList<AbsenteeReport>(); //List to store absentees who are absent for more than two days
 	private Day day = new Day();
 	private HttpServletRequest request; //http servlet request to get non model driven variables from jsp
-	
 	private static final long serialVersionUID = 1L;
 
 	/*This method is use to insert Trainee Records into our own database 
@@ -38,6 +37,7 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	public String insertTrainee() throws EmptyDateException, ParseException, IOException, InvalidDateException, DayExistsException
 	{
 		int count=0;
+		System.out.println(request.getParameter("date1"));
 		String selDate = request.getParameter("date1"); //getting the date parameter from datepicker in jsp
 		System.out.println(selDate);
 		if(selDate == null)
@@ -105,7 +105,6 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 		dList = tSvc.getOneAbsenteeDetails(trainee.getEmpId());
 		return SUCCESS;
 	}
-	
 	public List<Day> getdList()
 	{
 		return dList;
@@ -145,6 +144,5 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	public void setDay(Day day)
 	{
 		this.day = day;
-	}
-	
+	}	
 }
