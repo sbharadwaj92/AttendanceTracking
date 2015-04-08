@@ -8,12 +8,9 @@ public class AbsenteeReport
 	private String batchName;
 	private String project;
 	private Long count;
-	
-	
-	
-	public AbsenteeReport(Long empId, String empName, String lgName,
-			String batchName, String project, Long count) {
-		super();
+
+	public AbsenteeReport(Long empId, String empName, String lgName, String batchName, String project, Long count)
+	{
 		this.empId = empId;
 		this.empName = empName;
 		this.lgName = lgName;
@@ -21,40 +18,57 @@ public class AbsenteeReport
 		this.project = project;
 		this.count = count;
 	}
-	public Long getEmpId() {
+	public AbsenteeReport(String batchName, Long count) 
+	{
+		this.batchName = batchName;
+		this.count = count;
+	}
+	public Long getEmpId()
+	{
 		return empId;
 	}
-	public void setEmpId(Long empId) {
+	public void setEmpId(Long empId) 
+	{
 		this.empId = empId;
 	}
-	public String getEmpName() {
+	public String getEmpName() 
+	{
 		return empName;
 	}
-	public void setEmpName(String empName) {
+	public void setEmpName(String empName) 
+	{
 		this.empName = empName;
 	}
-	public String getLgName() {
+	public String getLgName() 
+	{
 		return lgName;
 	}
-	public void setLgName(String lgName) {
+	public void setLgName(String lgName) 
+	{
 		this.lgName = lgName;
 	}
-	public String getBatchName() {
+	public String getBatchName() 
+	{
 		return batchName;
 	}
-	public void setBatchName(String batchName) {
+	public void setBatchName(String batchName)
+	{
 		this.batchName = batchName;
 	}
-	public String getProject() {
+	public String getProject()
+	{
 		return project;
 	}
-	public void setProject(String project) {
+	public void setProject(String project)
+	{
 		this.project = project;
 	}
-	public Long getCount() {
+	public Long getCount()
+	{
 		return count;
 	}
-	public void setCount(Long count) {
+	public void setCount(Long count)
+	{
 		this.count = count;
 	}
 }

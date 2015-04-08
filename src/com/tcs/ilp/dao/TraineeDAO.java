@@ -221,4 +221,69 @@ public class TraineeDAO
         	return true;
         }   
 	}
+	public List<AbsenteeReport> batchNameAbsentees()
+	{
+		List<AbsenteeReport> abList = new ArrayList<AbsenteeReport>();
+        try
+        {
+            HibernateUtil.beginTransaction();
+            Query query = HibernateUtil.getSession().createQuery(
+            		"SELECT TR.batchName, COUNT(TRD.status)"
+            		+ " FROM Trainee TR JOIN TR.tSet TRD JOIN TRD.day DA WHERE TRD.status = :status"
+            		+ " GROUP BY TR.batchName HAVING count(TRD.status)>0");
+            query.setParameter("status", "A");
+            List<?> l = query.list();
+            HibernateUtil.commitTransaction();
+            Iterator<?> it=l.iterator();
+            while(it.hasNext())
+    		{
+    			Object rows[] = (Object[])it.next();
+    			AbsenteeReport ab = new AbsenteeReport((String)rows[0],(Long)rows[1]);
+    			abList.add(ab);
+    		}
+        }
+        catch(HibernateException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            HibernateUtil.closeSession();
+        }
+        return abList;
+	}
+	public List<AbsenteeReport> betweenAbsenteeTailgaters(String status, Date date1, Date date2)
+	{
+		List<AbsenteeReport> abList = new ArrayList<AbsenteeReport>();
+        try
+        {
+            HibernateUtil.beginTransaction();
+            Query query = HibernateUtil.getSession().createQuery(
+            		"SELECT TR.empId, TR.empName, TR.lgName, TR.batchName, TR.project, COUNT(TRD.status)"
+            		+ " FROM Trainee TR JOIN TR.tSet TRD JOIN TRD.day DA WHERE TRD.status = :status AND DA.curDate BETWEEN :date1 AND :date2"
+            		+ " GROUP BY TR.empId, TR.empName, TR.lgName, TR.batchName, TR.project"
+            		+ " HAVING count(TRD.status)>0 ORDER BY TR.empId");
+            query.setParameter("status", "A");
+            query.setParameter("date1", date1);
+            query.setParameter("date2", date2);
+            List<?> l = query.list();
+            HibernateUtil.commitTransaction();
+            Iterator<?> it=l.iterator();
+            while(it.hasNext())
+    		{
+            	Object rows[] = (Object[])it.next();
+    			AbsenteeReport ab = new AbsenteeReport((Long)rows[0],(String)rows[1],(String)rows[2],(String)rows[3],(String)rows[4],(Long)rows[5]);
+    			abList.add(ab);
+    		}
+        }
+        catch(HibernateException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            HibernateUtil.closeSession();
+        }
+        return abList;
+	}
 }

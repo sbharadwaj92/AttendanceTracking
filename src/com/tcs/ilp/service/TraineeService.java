@@ -34,98 +34,95 @@ public class TraineeService
 	{
 		Day d = new Day();
         d.setCurDate(date);
-        if(tDao.checkIfDayExists(d.getCurDate()))
+        
+		SimpleDateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");
+		int addTraineeCount = 0;
+		String fileName = "G:\\STATUS_"+sd.format(date)+".xls"; //appending date to get appropriate excel file
+	 	FileInputStream file = new FileInputStream(new File(fileName));
+		HSSFWorkbook workbook = new HSSFWorkbook(file);
+        HSSFSheet sheet = workbook.getSheetAt(0); //reading sheet 1
+        if(!tDao.checkIfDayExists(d.getCurDate()))
         {
-        	throw new DayExistsException();
+        	tDao.insertDay(d);
         }
-        else
+        int count=0; //Stores the Column value so that variables can be retrieved and set in a proper order
+        Iterator<Row> rowIterator = sheet.iterator(); //To iterate the excel sheet row by row
+        Row row = rowIterator.next();
+        while(rowIterator.hasNext())
         {
-			SimpleDateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");
-			int addTraineeCount = 0;
-			String fileName = "E:\\STATUS_"+sd.format(date)+".xls"; //appending date to get appropriate excel file
-		 	FileInputStream file = new FileInputStream(new File(fileName));
-			HSSFWorkbook workbook = new HSSFWorkbook(file);
-	        HSSFSheet sheet = workbook.getSheetAt(0); //reading sheet 1
-	        tDao.insertDay(d);
-	        int count=0; //Stores the Column value so that variables can be retrieved and set in a proper order
-	        Iterator<Row> rowIterator = sheet.iterator(); //To iterate the excel sheet row by row
-	        Row row = rowIterator.next();
-	        while(rowIterator.hasNext())
-	        {
-	        	Trainee t = new Trainee();
-	        	TraineeDay td= new TraineeDay();
-	        	TraineeDayId tdId = new TraineeDayId();
-	        	count=-1;  //Assuming 0 is the fist cell of each row
-	        	row = rowIterator.next(); //Assuming first row is header row
-	        	Iterator<Cell> cellIterator = row.cellIterator(); //To iterate the excel sheet cell by cell of a row
-	        	while(cellIterator.hasNext())
-	            {
-	                Cell cell = cellIterator.next();
-	                count++; //incrementing count every time when we iterate cell by cell
-	                switch(cell.getCellType())
-	                {
-	                    case Cell.CELL_TYPE_NUMERIC:	
-	                    	
-	                    	/* Numeric value in excel is always considered as Double in java, 
-	                    	 * type casting from double to long is not allowed in java and hence achieving
-	                    	 * it through Math.round function since we know that that decimal part is always zero*/
-	                    	t.setEmpId(Math.round(cell.getNumericCellValue())); 
-	                    	break;
-	                    	
-	                    case Cell.CELL_TYPE_STRING:
-	                    	
-	                    	switch(count)
-	                    	{
-	                    	
-	                    	//String all String type values into respective objects based on cell numbers
-	                    		case 1: t.setEmpName(cell.getStringCellValue());
-	                    				break;
-	                    		case 2:	t.setCity(cell.getStringCellValue());
-	                    				break;
-	                    		case 3: t.setLocation(cell.getStringCellValue());
-	                    				break;
-	                    		case 4: t.setProject(cell.getStringCellValue());
-	                    				break;
-	                    		case 5: td.setStatus(cell.getStringCellValue());
-	                    				break;
-	                    	}
-	                    	break;
-	                }
-	            }
-	    		TempTrainee tt = new TempTrainee();  //Trainee object which contains the date of release
-	    		tt=ttDao.getTraineeBatchLgDorDetails(t.getEmpId());
-	    		if(tt.getDor()!=null)
-				{
-	    			t.setDor(tt.getDor());
-				}
-	    		t.setLgName(tt.getLgName());
-	    		t.setBatchName(tt.getBatchName());
-	        	if(td.getStatus().equalsIgnoreCase("A") || td.getStatus().equalsIgnoreCase("0.00"))
-	        	{
-	        		if(t.getDor()!=null)
-	        		{
-	        			if(d.getCurDate().compareTo(t.getDor())<0)
-	        			{
-	        				if(!tDao.checkIfTraineeExists(t.getEmpId()))
-	        				{
-	        					tDao.insertTrainee(t);
-	        				}
-	        			}
-	        		}
-	                tdId.setCurDate(d.getCurDate());
-	                tdId.setEmpId(t.getEmpId());
-	                td.setId(tdId);
-	                tDao.insertTraineeDay(td);
-	                addTraineeCount++;
-	        	}
-	        }
-	        workbook.close();
-	        file.close();
-	        FileOutputStream out = new FileOutputStream(new File("E:\\STATUS_"+sd.format(date)+".xls"));
-	        workbook.write(out);
-	        out.close();
-			return addTraineeCount;
+        	Trainee t = new Trainee();
+        	TraineeDay td= new TraineeDay();
+        	TraineeDayId tdId = new TraineeDayId();
+        	count=-1;  //Assuming 0 is the first cell of each row
+        	row = rowIterator.next(); //Assuming first row is header row
+        	Iterator<Cell> cellIterator = row.cellIterator(); //To iterate the excel sheet cell by cell of a row
+        	while(cellIterator.hasNext())
+            {
+                Cell cell = cellIterator.next();
+                count++; //incrementing count every time when we iterate cell by cell
+                switch(cell.getCellType())
+                {
+                    case Cell.CELL_TYPE_NUMERIC:	
+                    	
+                    	/* Numeric value in excel is always considered as Double in java, 
+                    	 * type casting from double to long is not allowed in java and hence achieving
+                    	 * it through Math.round function since we know that that decimal part is always zero*/
+                    	t.setEmpId(Math.round(cell.getNumericCellValue())); 
+                    	break;
+                    	
+                    case Cell.CELL_TYPE_STRING:
+                    	
+                    	switch(count)
+                    	{
+                    	
+                    	//String all String type values into respective objects based on cell numbers
+                    		case 1: t.setEmpName(cell.getStringCellValue());
+                    				break;
+                    		case 2:	t.setCity(cell.getStringCellValue());
+                    				break;
+                    		case 3: t.setLocation(cell.getStringCellValue());
+                    				break;
+                    		case 4: t.setProject(cell.getStringCellValue());
+                    				break;
+                    		case 5: td.setStatus(cell.getStringCellValue());
+                    				break;
+                    	}
+                    	break;
+                }
+            }
+    		TempTrainee tt = new TempTrainee();  //Trainee object which contains the date of release
+    		tt=ttDao.getTraineeBatchLgDorDetails(t.getEmpId());
+    		if(tt.getDor()!=null)
+			{
+    			t.setDor(tt.getDor());
+			}
+    		t.setLgName(tt.getLgName());
+    		t.setBatchName(tt.getBatchName());
+        	if(td.getStatus().equalsIgnoreCase("A") || td.getStatus().equalsIgnoreCase("0.00"))
+        	{
+        		if(t.getDor()!=null)
+        		{
+        			if(d.getCurDate().compareTo(t.getDor())<0)
+        			{
+        				if(!tDao.checkIfTraineeExists(t.getEmpId()))
+        				{
+        					tDao.insertTrainee(t);
+        				}
+        			}
+        		}
+                tdId.setCurDate(d.getCurDate());
+                tdId.setEmpId(t.getEmpId());
+                td.setId(tdId);
+                tDao.insertTraineeDay(td);
+                addTraineeCount++;
+        	}
         }
+        workbook.close();
+        file.close();
+        FileOutputStream out = new FileOutputStream(new File("G:\\STATUS_"+sd.format(date)+".xls"));
+        workbook.write(out);
+        out.close();
+		return addTraineeCount;
 	}
 	public List<Trainee> displayDailyAbsenteeTrailgater(String status, Date date)
 	{
@@ -138,5 +135,9 @@ public class TraineeService
 	public List<Day> getOneAbsenteeDetails(Long empId)
 	{
 		return tDao.getOneAbsenteeDates(empId);
+	}
+	public List<AbsenteeReport> getAbsenteeDetailsBtDates(String string, Date date1, Date date2)
+	{
+		return tDao.betweenAbsenteeTailgaters(string,date1,date2);
 	}
 }

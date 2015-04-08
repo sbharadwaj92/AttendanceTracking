@@ -34,6 +34,7 @@ create table TBL_User
 	empId number(10) primary key,
 	userName varchar2(50),
 	password varchar2(50),
+	loginCount number(10) default 0,
 	userTypeId number(5) references TBL_UserType(userTypeId)
 );
 
@@ -56,8 +57,8 @@ create table TBL_Trainee_Temp
 	doj date,
 	dor date
 );
-insert into TBL_UserType values(1,'admin');
-insert into TBL_UserType values(2,'ftm');
+insert into TBL_UserType values(1,'ADMIN');
+insert into TBL_UserType values(2,'FTM');
 insert into TBL_Trainee_Temp values(834002,'emp1','TJA142','TVM30',TO_DATE('01-MAR-2015', 'dd-MON-yyyy'), TO_DATE('01-JUN-2015', 'dd-MON-yyyy'));
 insert into TBL_Trainee_Temp values(834003,'emp2','TJA142','TVM30',TO_DATE('01-MAR-2015', 'dd-MON-yyyy'), TO_DATE('01-JUN-2015', 'dd-MON-yyyy'));
 insert into TBL_Trainee_Temp values(834004,'emp3','TJA142','TVM30',TO_DATE('01-MAR-2015', 'dd-MON-yyyy'), TO_DATE('01-JUN-2015', 'dd-MON-yyyy'));
@@ -69,10 +70,13 @@ insert into TBL_Trainee_Temp values(834008,'emp7','TJA142','TVM30',TO_DATE('01-M
 drop table TBL_Trainee_Day;
 drop table TBL_Trainee_Absentee_Tailgater;
 drop table TBL_Day;
+drop table TBL_Trainee_Temp;
+
 drop table TBL_Employee;
 drop table TBL_User;
 drop table TBL_UserType;
-drop table TBL_Trainee_Temp;
+
+update TBL_Employee set empName = 'SANTOSH BHARADWAJ' where empId = 834002;
 
 select * from TBL_User
 select * from TBL_UserType;

@@ -1,10 +1,13 @@
 package com.tcs.ilp.bean;
 
+import com.opensymphony.xwork2.validator.annotations.RequiredFieldValidator;
+
 public class User
 {
 	private Long empId;
 	private String userName;
 	private String password;
+	private long loginCount;
 	
 	private Employee employee;
 	private UserType userType;
@@ -13,6 +16,8 @@ public class User
 	{
 		return empId;
 	}
+	
+	@RequiredFieldValidator(message="Please Enter Valid Employee ID")
 	public void setEmpId(Long empId)
 	{
 		this.empId = empId;
@@ -48,5 +53,13 @@ public class User
 	public void setUserType(UserType userType)
 	{
 		this.userType = userType;
+	}
+	public long getLoginCount()
+	{
+		return loginCount;
+	}
+	public void setLoginCount(long loginCount)
+	{
+		this.loginCount = loginCount;
 	}
 }

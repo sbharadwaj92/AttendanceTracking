@@ -106,8 +106,22 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 		return SUCCESS;
 	}
 	
-	public String getAbsenteesbtTwoDates()
+	public String getAbsenteesbtTwoDates() throws EmptyDateException, ParseException
 	{
+		String selDate1 = request.getParameter("date1");
+		String selDate2 = request.getParameter("date2");
+		Date date1 = new Date();
+		Date date2 = new Date();
+		System.out.println(selDate1+" "+selDate2);
+		if(selDate1 == null || selDate2 == null)
+		{
+			throw new EmptyDateException();
+		}
+		SimpleDateFormat sd = new SimpleDateFormat ("dd-MM-yyyy");
+		
+		date1=sd.parse(selDate1);
+		date2=sd.parse(selDate2);
+		abList = tSvc.getAbsenteeDetailsBtDates("A",date1, date2);
 		return SUCCESS;
 	}
 	public List<Day> getdList()
@@ -149,5 +163,6 @@ public class TraineeAction extends ActionSupport implements ModelDriven<Trainee>
 	public void setDay(Day day)
 	{
 		this.day = day;
-	}	
+	}
+	
 }

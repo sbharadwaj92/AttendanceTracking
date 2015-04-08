@@ -21,8 +21,9 @@ $(document).ready(function () {
 
      });
     $('#sandbox-container2 .input-daterange').datepicker({
-        format: "dd/mm/yyyy",
+        format: "dd-mm-yyyy",
         endDate: "-1d",
         autoclose: true
     });
+
 });

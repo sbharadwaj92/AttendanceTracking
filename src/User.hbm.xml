@@ -9,6 +9,7 @@
         
         <property name="userName" column="userName" type="string" />
         <property name="password" column="password" type="string" />
+        <property name="loginCount" column="loginCount" type="long" />
         
         <one-to-one name="employee" class="com.tcs.ilp.bean.Employee"></one-to-one>
         
