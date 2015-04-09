@@ -61,15 +61,23 @@ if(session.getAttribute("empId")==null)
 	<s:a href="%{#home}">HOME</s:a><br><br>
 <% String result = (String) request.getAttribute("result"); %>
 
-<s:form action="addNewUsers" theme="simple" cssClass="form-inline">
-  <div class="form-group">
-    <label for="input1">Employee ID</label>
-    <s:textfield name="empId" cssClass="form-control" id="input1" placeholder="Enter Emp ID"></s:textfield>
-  </div>
-  <s:submit value="Submit" cssClass="btn btn-primary"></s:submit>
-</s:form>
+	<div class="panel panel-default" style="width: 400px; margin: 0 auto; margin-top: 3.1%;">
+	  <div class="panel-heading">
+    	<h3 class="panel-title">Registration</h3>
+  	  </div>
+	  <div class="panel-body">
+	  
+		<s:form action="addNewUsers" theme="simple" class="form-inline">
+		  <div class="form-group">
+		    <label for="input1">Employee ID</label>
+		    <s:textfield name="empId" cssClass="form-control" id="input1" placeholder="Enter Emp ID"></s:textfield>
+		  </div>
+		  <% if(result!=null) { %><label style="color:#a94442;"><%= result %></label><% } %>
+		  <s:submit value="Submit"  cssClass="btn btn-primary"></s:submit>
+		</s:form>
+	  </div>
+	</div>
 
-<% if(result!=null) { %><label class="text-info"><%= result %></label><% } %>
 	<div id="footer" style="margin-top:10%;">
 		<p>&copy; 2015. All rights reserved. Developed by ILP Trivandrum</p>
 	</div>

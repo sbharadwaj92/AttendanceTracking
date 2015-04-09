@@ -68,13 +68,20 @@ if(session.getAttribute("empId")==null)
 	<s:url var="home" action="index"></s:url>
 	<s:a href="%{#home}">HOME</s:a><br><br>
 	
-	<form class="form-inline" id="form" action="getRecords">
+
+
+
+	<form class="form-inline" id="form" action="getRecords" style="width: 300px; margin:0 auto;">
 		<div class="form-group inner-addon left-addon col-md-2" id="sandbox-container">
 			<i class="glyphicon glyphicon-calendar"></i>
 			<input type="text" name="date1" class="form-control" placeholder="dd-mm-yyyy" autocomplete="off" required />
 		</div>&nbsp;&nbsp;
-		<button type="submit" class="btn btn-primary submitBtn">Submit</button>
+		<button type="submit" class="btn btn-primary submitBtn" style="padding:left:10%;">Submit</button>
 	</form>
+
+
+
+	
 		<div id="footer" style="margin-top:10%;">
 		<p>&copy; 2015. All rights reserved. Developed by ILP Trivandrum</p>
 	</div>
